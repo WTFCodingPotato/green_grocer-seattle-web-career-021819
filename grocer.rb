@@ -3,10 +3,9 @@ def consolidate_cart(cart)
   cart.each do |element|
     element.each do |item, attributes|
       if new_list.has_key?(item)
-        new_list[:count] += 1
+        new_list[item][:count] += 1
       else
         new_list[item] = attributes.merge({:count => 1})
-
       end
     end
   end

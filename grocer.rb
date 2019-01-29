@@ -17,11 +17,11 @@ def apply_coupons(cart, coupons)
   coupons.each do |coupon_item|
     name = coupon_item[:item]
     if cart[name] && cart[name][:count] >= coupon_item[:num]
-      new_list["#{name} W/COUPON"] = {:price => coupon[:cost],
+      new_list["#{name} W/COUPON"] = {:price => coupon_item[:cost],
                                       :clearance => cart[name][:clearance],
-                                      :count => (cart[name][:count]/coupon[:num])
+                                      :count => (cart[name][:count]/coupon_item[:num])
                                      }
-      new_list[name][:count] = cart[name][:count]%coupon[:num]
+      new_list[name][:count] = cart[name][:count]%coupon_item[:num]
     end
   end
   new_list

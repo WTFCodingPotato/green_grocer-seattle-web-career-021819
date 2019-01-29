@@ -37,5 +37,13 @@ def apply_clearance(cart)
 end
 
 def checkout(cart, coupons)
-  # code here
+  final_cart = apply_clearance(apply_coupons(consolidate_cart(cart), coupons))
+  total = 0
+  final_cart.each do |item, data|
+    total += data[:price]*data[:count]
+  end
+  if total > 100
+    total = (total*0.9).round(2)
+  end
+  total  
 end

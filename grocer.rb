@@ -1,11 +1,11 @@
 def consolidate_cart(cart)
   new_list = {}
   cart.each do |element|
-    element.each do |item, attributes|
+    element.each do |item, data|
       if new_list.has_key?(item)
         new_list[item][:count] += 1
       else
-        new_list[item] = attributes.merge({:count => 1})
+        new_list[item] = data.merge({:count => 1})
       end
     end
   end
@@ -28,7 +28,9 @@ def apply_coupons(cart, coupons)
 end
 
 def apply_clearance(cart)
-  # code here
+  cart.each do |item, data|
+    if data[:clearance == true]
+      data[:price] = ((data[:price].to_f) * .8).to_i
 end
 
 def checkout(cart, coupons)
